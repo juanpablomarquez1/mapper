@@ -2,12 +2,19 @@ import sys
 import io
 import re
 import nltk
-#import unicodedata
 
-#def remove_accents(input_str):
-    #nfkd_form = unicodedata.normalize('NFKD', input_str)
-    #only_ascii = nfkd_form.encode('ASCII', 'ignore')
-    #return only_ascii
+def remove_accents(raw_text):
+
+    raw_text = re.sub(u"[àáâãäå]", 'a', raw_text)
+    raw_text = re.sub(u"[èéêë]", 'e', raw_text)
+    raw_text = re.sub(u"[ìíîï]", 'i', raw_text)
+    raw_text = re.sub(u"[òóôõö]", 'o', raw_text)
+    raw_text = re.sub(u"[ùúûü]", 'u', raw_text)
+    raw_text = re.sub(u"[ýÿ]", 'y', raw_text)
+    raw_text = re.sub(u"[ß]", 'ss', raw_text)
+    raw_text = re.sub(u"[ñ]", 'n', raw_text)
+
+    return raw_text 
 
 
 nltk.download('stopwords',quiet=True)
@@ -30,5 +37,5 @@ for line in input_stream:
 
   for word in words: 
     if word not in stop_words:
-      #word = remove_accents(word)
+      word = remove_accents(word)
       print('%s\t%s' % (word[0], 1))
