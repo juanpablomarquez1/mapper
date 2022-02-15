@@ -9,7 +9,7 @@ def remove_accents(input_str):
     only_ascii = nfkd_form.encode('ASCII', 'ignore')
     return only_ascii
 
-    
+
 nltk.download('stopwords',quiet=True)
 from nltk.corpus import stopwords
 punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
@@ -26,8 +26,9 @@ for line in input_stream:
     if x in punctuations:
       line=line.replace(x, " ") 
 
-  line=line.split()
-  words = remove_accents(line)
-  for word in words: 
-    if word not in stop_words:
+  words = line.split()
+
+  for wordfor in words: 
+    if wordfor not in stop_words:
+      word = remove_accents(word)
       print('%s\t%s' % (word[0], 1))
